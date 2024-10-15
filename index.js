@@ -28,6 +28,24 @@ app.post("/product", async (req, res)=>{
     res.status(201).json(product)
 })
 
+// put Request 
+app.put("/product/:id", async (req, res)=>{
+    const product = await Product.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    console.log("body", req.body)
+    console.log("params", req.params)
+    console.log("query", req.query)
+    res.status(200).json(product)
+   
+})
+
+// Delete Request 
+app.delete("/product/:id", async (req, res)=>{
+    const product = await Product.findByIdAndDelete(req.params.id) 
+    console.log("body", req.body)
+    res.status(200).json(product)
+    
+})
+
 
 const port = 3000
 
